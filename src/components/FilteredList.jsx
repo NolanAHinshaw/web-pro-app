@@ -19,31 +19,27 @@ class FilteredList extends Component {
 
     //TODO (FilteredList): Set the state of the "type" state variable depending on what is passed in
     onFilter = (event) => {
-        this.setState({value: event.value});
+        this.setState({type: event});
     }
 
     //TODO (FilteredList): Change filterItem to take into account the "type" state variable when filtering
     filterItem = (item) => {
-        if (item.name != undefined) {
-            return item.name.toLowerCase().search(this.state.search) !== -1;
-        } else {
-            if(item != "all") {
-                console.log("props", this.props.items)
-                var filteredArr = [];
-                this.props.items.map((x) => {
-                    if(x.type == item) 
-                        filteredArr.push(x);
-                })
-                console.log(filteredArr);
-                return filteredArr;
-            }
+        const { search, type } = this.state;
+
+        if (item.name !== undefined && item.type !== undefined) { //error checking to make sure values arent undefined
+          const nameMatch = item.name.toLowerCase().includes(search);
+          const typeMatch = type === "all" || item.type.toLowerCase() === type.toLowerCase();
+      
+          return nameMatch && typeMatch;
         }
-    }
+      
+        return false;
+    };
 
     render(){
         return (
             <div className = "filter-list">
-                <DropdownButton id="typeDropdown" title={"Product Type"} onSelect={this.filterItem}>
+                <DropdownButton id="typeDropdown" title={"Product Type"} onSelect={this.onFilter}>
                     <Dropdown.Item eventKey="all">All</Dropdown.Item> 
                     <Dropdown.Item eventKey="Vegetable">Vegetables</Dropdown.Item> 
                     <Dropdown.Item eventKey="Fruit">Fruits</Dropdown.Item> 
