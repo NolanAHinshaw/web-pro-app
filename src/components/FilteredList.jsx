@@ -40,9 +40,9 @@ class FilteredList extends Component {
         return (
             <div className = "filter-list">
                 <DropdownButton id="typeDropdown" title={"Product Type"} onSelect={this.onFilter}>
-                    <Dropdown.Item eventKey="all">All</Dropdown.Item> 
-                    <Dropdown.Item eventKey="Vegetable">Vegetables</Dropdown.Item> 
-                    <Dropdown.Item eventKey="Fruit">Fruits</Dropdown.Item> 
+                    <Dropdown.Item eventKey="all">All</Dropdown.Item> <br/>
+                    <Dropdown.Item eventKey="Vegetable">Vegetables</Dropdown.Item> <br/>
+                    <Dropdown.Item eventKey="Fruit">Fruits</Dropdown.Item> <br/>
                 </DropdownButton>
 
                 <h1>Produce Search</h1>
